@@ -1,0 +1,17 @@
+name = "portfolio"
+compatibility_date = "2025-07-15"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist"
+
+# Comentários e reações
+[[d1_databases]]
+binding = "DB"
+database_name = "portfolio-db"
+database_id = "REPLACE_WITH_DB_ID"
+migrations_dir = "drizzle"
+
+# Índice interno do Nuxt Content
+[[d1_databases]]
+binding = "CONTENT_DB"
+database_name = "portfolio-content"
+database_id = "REPLACE_WITH_CONTENT_DB_ID"

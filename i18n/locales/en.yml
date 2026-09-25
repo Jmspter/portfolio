@@ -1,0 +1,183 @@
+nav:
+  home: Home
+  navigation: Main navigation
+  blog: Blog
+  projects: Projects
+  about: About
+  contact: Contact
+  menu: Open menu
+  close_menu: Close menu
+  theme: Toggle theme
+  language: Language
+  skip: Skip to content
+  dark_mode: Dark mode
+  section: "Current section: {section}"
+  bottom: Bottom navigation
+  more: More options
+images:
+  pending: "Image pending: {id}"
+  hero-visual:
+    alt: ""
+  about-portrait:
+    alt: Informal portrait of James Peter
+  about-workspace:
+    alt: James Peter's work desk
+  project-example-cover:
+    alt: Project cover
+  project-example-screen-01:
+    alt: Main screen of the project
+  project-example-screen-02:
+    alt: Main flow of the project
+  project-example-screen-03:
+    alt: Project detail
+  blog-ola-mundo-cover:
+    alt: Geometric illustration for the Hello, world post
+  og-default:
+    alt: James Peter's portfolio
+meta:
+  home_title: "James Peter — Full Stack Developer"
+  default_description: "James Peter's portfolio — full stack developer. Case studies, technical writing and how I turn problems into software."
+  job_title: Full Stack Developer
+home:
+  eyebrow: Full stack developer
+  title: Hi, I'm James Peter
+  subtitle: Full stack developer. I build durable web applications, with secure APIs and clear interfaces, from Vue to Ruby on Rails.
+  projects_cta: View projects
+  contact_cta: Get in touch
+  latest_posts: Latest posts
+  featured_projects: Featured projects
+  view_all: View all
+  chapter_build: What I build
+  chapter_think: How I think
+  chapter_talk: Let's talk
+  think:
+    a: "Technology was never about stability. It’s about uncertainty, the process, and keeping digging even when you can’t see the end.\n\nI don’t know how to prepare for everything that might happen. No one does.\n\n"
+    mark: "It's mining in the dark. It always has been."
+    b: "\n\nGood luck to all of us who chose to keep digging."
+  talk:
+    body: Got a product, an idea, or a problem to solve together?
+blog:
+  title: Blog
+  intro: Notes on product, code, and the work behind the web.
+  filter: Filter by tag
+  empty: No posts published yet.
+  back: Back to blog
+  reading_time: "{minutes} min read"
+  not_found: Post not found in this language.
+  toc: On this page
+  back_top: Back to top
+  all: All posts
+  featured: Featured
+  article: Article
+  search_label: Search articles
+  search_placeholder: Search by title, tag or category…
+  search_clear: Clear search
+  no_results: No results for “{query}”.
+  result_count: "{count} article | {count} articles"
+  category_all: All
+  carousel_label: Featured posts
+  carousel_prev: Previous post
+  carousel_next: Next post
+  section_destaques: In focus
+  section_latest: Below the fold
+  section_notes: Notes
+  search_live: "{count} article found for “{query}” | {count} articles found for “{query}”"
+projects:
+  title: Projects
+  intro: Case studies of products that turn complex problems into clear experiences.
+  empty: No projects published yet.
+  back: Back to projects
+  repo: Source
+  live: View live
+  case_link: Read the case study
+  stage_label: Overview
+  section_label: "Section {n}"
+  storyrail_label: Sections
+about:
+  title: About
+  intro: Full stack developer focused on web experiences that are clear, fast and built to last.
+  body: "\nMy journey started at the Metrópole Digital Institute (IMD/UFRN), where I took the technical IT course, and that's when technology stopped being a curiosity and became a path. Along the way I completed Cisco's Junior Cybersecurity course, which changed the way I look at any system: security isn't an afterthought, it's built in from the start.\n\nThen came the Interdisciplinary Bachelor's in Science and Technology at ECT/UFRN, plus a stint in the IT team of the Department of Arts, where I learned that good software is software that solves a real problem for real people, without friction and without noise.\n\nAs a junior developer at Next Mindmid Hub I got into real full stack work: REST APIs, JWT auth, queues, transactional email and dashboards. I built PIAF, an API that manages classes, enrollments with waitlists and attendance; Rookie Network, a Ruby on Rails app for onboarding and training new hires; and the Windcraft Engineering website, the company I work at today.\n\nI now work as a full stack developer at Windcraft, building durable web applications with Vue, Nuxt, Ruby on Rails and Sinatra.\n\nWhat I'm looking for is simple: keep building solutions that make things easier for people across different fields, whether that's system automation, building new tools, or research and development. Software that lasts, and that makes a difference in the lives of the people who use it."
+  stats:
+    years:
+      value: "4"
+      label: years of experience
+    projects:
+      value: "12"
+      label: published projects
+    languages:
+      value: "2"
+      label: languages
+  timeline_title: Journey
+  timeline:
+    - year: "2022"
+      title: IT technician course, IMD/UFRN
+      body: Started the IT technician programme at Instituto Metrópole Digital (IMD), Federal University of Rio Grande do Norte (UFRN).
+    - year: "2023"
+      title: Cisco Cybersecurity Junior
+      body: Earned Cisco's junior cybersecurity certification.
+    - year: "2024"
+      title: Interdisciplinary Bachelor, ECT/UFRN
+      body: Joined UFRN's School of Science and Technology (ECT), in the Interdisciplinary Bachelor's in Science and Technology.
+    - year: "2024"
+      title: IT at the Arts Department
+      body: Joined the IT team at UFRN's Arts Department.
+    - year: "2025"
+      title: Junior Programmer, Next Mindmid Hub
+      body: In the middle of the year, started as a junior programmer at Next Mindmid Hub.
+    - year: "Late 2025"
+      title: Networks Technician, IMD
+      body: Graduated as a Computer Networks Technician from Instituto Metrópole Digital (IMD).
+    - year: "2026"
+      title: Windcraft Engenharia
+      body: Joined the Windcraft Engenharia team.
+  quote_a: "API security is not an extra feature, not an add-on, not a plugin. "
+  quote_mark: "It is architecture."
+  quote_b: "\n\nAnd bad architecture isn't fixed by putting a JWT and a proxy in front of it. It is born secure, or it is born with problems.."
+contact:
+  title: Contact
+  intro: "Got a problem or an idea worth a solid solution? Tell me about it. A short message is all it takes to get going."
+  step_1_title: You write a short message
+  step_1_body: One paragraph is enough for me to understand the challenge.
+  step_2_title: The conversation continues in your inbox
+  step_2_body: No bots, no chained forms. A direct reply.
+  step_3_title: We figure out the next step
+  step_3_body: Call, email or meeting, whichever works best for you.
+  secure: Protected by Cloudflare Turnstile
+  required_note: Fields with * are required
+  name: Name
+  email: Email
+  message: Message
+  send: Send message
+  sending: Sending…
+  success: Message sent. Thanks for reaching out!
+  error: Couldn't send your message. Please try again shortly.
+comments:
+  title: Comments
+  empty: No comments yet. Be the first.
+  name: Name
+  body: Comment
+  send: Post comment
+  sending: Posting…
+  pending: Comment received. It will show up here once approved.
+  error: Couldn't post your comment.
+reactions:
+  like: Like
+  love: Love
+  error: Couldn't save your reaction.
+  loading: Updating reactions…
+error:
+  title: Page not found
+  body: This address does not exist or has moved.
+  back: Back home
+admin:
+  eyebrow: Admin
+  title: Comment moderation
+  pending: Pending
+  approved: Approved
+  rejected: Rejected
+  approve: Approve
+  reject: Reject
+  delete: Delete
+  empty: Nothing here.
+footer:
+  rights: All rights reserved.

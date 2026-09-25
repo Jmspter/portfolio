@@ -1,0 +1,766 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   Tokens de cor — triplas RGB para permitir opacidade no Tailwind
+   (rgb(var(--surface) / <alpha-value>)).
+   Superfícies no dark: quanto mais alta, mais clara (sem sombras).
+   ───────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+
+  --bg: 255 255 255;
+  --surface: 255 255 255;
+  --surface-raised: 247 249 252;
+  --surface-muted: 243 246 250;
+  --surface-overlay: 255 255 255;
+
+  --ink: 11 27 58;
+  --secondary: 58 74 107;
+  --muted: 96 108 140;
+
+  --border: 213 219 234;
+  --border-strong: 125 141 184;
+
+  --accent: 225 6 0;
+  --accent-hover: 193 5 0;
+  --accent-on-accent: 255 255 255;
+  --blue: 54 113 198;
+
+  --highlight: 255 204 0;
+  --highlight-text: 11 27 58;
+
+  --focus: 37 91 200;
+  --success: 24 121 78;
+  --danger: 225 6 0;
+  --code-text: 226 232 240;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: 7 18 43;
+  --surface: 11 27 58;
+  --surface-raised: 16 34 74;
+  --surface-muted: 13 29 63;
+  --surface-overlay: 22 38 75;
+
+  --ink: 255 255 255;
+  --secondary: 215 224 245;
+  --muted: 168 183 216;
+
+  --border: 36 55 94;
+  --border-strong: 78 106 164;
+
+--accent: 255 90 78;
+  --accent-hover: 255 122 112;
+  --accent-on-accent: 20 6 10;
+  --blue: 76 139 227;
+
+  --highlight: 255 204 0;
+  --highlight-text: 11 27 58;
+
+  --focus: 37 91 200;
+  --success: 24 121 78;
+  --danger: 255 90 78;
+  --code-text: 226 232 240;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Tokens de movimento — apenas transform/opacity (compositor).
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-med: 320ms;
+  --dur-long: 560ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+  --move-xs: 4px;
+  --move-sm: 8px;
+  --move-md: 16px;
+  --move-lg: 28px;
+}
+
+@layer base {
+  html {
+    @apply bg-baseBg text-ink antialiased;
+    font-family: 'Instrument Sans', sans-serif;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  body {
+    @apply min-w-[320px] overflow-x-clip;
+    background-image: radial-gradient(rgb(var(--border) / 0.55) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    @apply outline-2 outline-offset-4 outline-focus;
+  }
+  ::selection {
+    background: rgb(var(--highlight));
+    color: rgb(var(--highlight-text));
+  }
+  input, textarea, select, button, progress {
+    accent-color: rgb(var(--highlight));
+  }
+  mark {
+    background: transparent;
+    color: inherit;
+  }
+}
+
+@layer components {
+  .field {
+    @apply min-h-11 w-full rounded border border-lineStrong bg-surface px-3 py-2.5 text-base text-ink placeholder:text-muted dark:text-ink;
+  }
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded bg-accent px-4 py-2 text-sm font-semibold text-accentOnAccent transition-[background-color,border-color,color,transform,box-shadow] duration-150 ease-out hover:-translate-y-px hover:bg-accentHover active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded border border-lineStrong px-3 py-2 text-sm font-semibold text-ink transition-[background-color,border-color,color,transform] duration-150 ease-out hover:-translate-y-px hover:border-ink hover:bg-surfaceRaised active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none dark:hover:border-highlight dark:hover:bg-surface;
+  }
+  .btn-icon {
+    @apply inline-flex min-h-9 min-w-9 items-center justify-center rounded-full border border-lineStrong bg-surface text-ink transition-[background-color,border-color,color,transform] duration-150 ease-out hover:border-highlight hover:bg-surfaceRaised active:scale-[0.96] motion-reduce:transform-none disabled:cursor-not-allowed disabled:opacity-35 dark:hover:bg-surface;
+  }
+  .eyebrow {
+    @apply font-display text-xs font-bold uppercase tracking-[0.18em] text-accent;
+  }
+  .section-rule {
+    @apply border-t border-line;
+  }
+  .prose-brand {
+    @apply prose prose-slate max-w-reading dark:prose-invert;
+  }
+  .prose-brand :where(h2, h3, h4):not(:where([class~='not-prose'] *)) {
+    scroll-margin-top: 6rem;
+  }
+  .prose-brand :where(a):not(:where([class~='not-prose'] *)) {
+    @apply text-accent underline decoration-highlight decoration-2 underline-offset-4 hover:text-accentHover;
+  }
+  .prose-brand :where(code):not(:where([class~='not-prose'] *)) {
+    @apply rounded bg-surfaceMuted px-1.5 py-0.5 text-ink dark:bg-surface dark:text-highlight;
+  }
+  .prose-brand :where(pre):not(:where([class~='not-prose'] *)) {
+    @apply rounded-lg border-l-4 border-highlight bg-baseBg text-codeText;
+  }
+  .project-frame {
+    @apply overflow-hidden rounded-lg border border-line bg-surface shadow-[0_12px_30px_rgba(7,18,43,0.10)] dark:bg-surface dark:shadow-[0_12px_30px_rgba(0,0,0,0.35)];
+  }
+  .project-frame__bar {
+    @apply flex h-8 items-center gap-1.5 border-b border-line bg-surfaceMuted px-3 dark:bg-surfaceMuted;
+  }
+  .glass {
+    @apply bg-surface/70 backdrop-blur-xl dark:bg-baseBg/70;
+  }
+  /* —— Cabeçalho de capítulo — */
+  .chapter-opener {
+    @apply mb-6 flex items-end justify-between gap-4 border-b border-line pb-3;
+  }
+
+  /* —— Coreografia da geometria do hero (formas interagem e se transformam) — */
+  .geo-trio {
+    will-change: transform;
+    z-index: 2;
+  }
+  .geo-trio__circle {
+    --tx: -150px;
+    --ty: -116px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: rgb(var(--accent));
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
+  }
+  .geo-trio__square {
+    --tx: 150px;
+    --ty: 118px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: rgb(var(--highlight));
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
+  }
+  .geo-trio__triangle {
+    --tx: 112px;
+    --ty: -136px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    background-color: rgb(var(--blue));
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .geo-trio__circle {
+      animation: trio-circle 9s var(--ease-in-out) infinite;
+      animation-delay: -1.2s;
+    }
+    .geo-trio__square {
+      animation: trio-square 9s var(--ease-in-out) infinite;
+      animation-delay: -3.6s;
+    }
+    .geo-trio__triangle {
+      animation: trio-triangle 9s var(--ease-in-out) infinite;
+      animation-delay: -5.4s;
+    }
+  }
+
+  /* —— Parallax contido por capítulo (só transform) — */
+  .geo-parallax {
+    will-change: transform;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .geo-parallax--back {
+        animation: geo-rise 40% ease-out both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 62%;
+      }
+      .geo-parallax--front {
+        animation: geo-rise 26% ease-out both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 55%;
+      }
+    }
+  }
+
+  /* —— Timeline: trilho que se desenha + marcos que acendem — */
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.9375rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    border-radius: 9999px;
+    background-color: rgb(var(--border));
+  }
+  .timeline--fill::before {
+    background-color: rgb(var(--accent));
+    transform-origin: top;
+  }
+  .timeline__marker {
+    grid-column: 1;
+    justify-self: center;
+    height: 0.875rem;
+    width: 0.875rem;
+    border-radius: 9999px;
+    border: 2px solid rgb(var(--border-strong));
+    background-color: rgb(var(--surface));
+    transition: background-color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .timeline--fill::before {
+        transform: scaleY(0.02);
+        animation: timeline-fill var(--dur-long) var(--ease-in-out) both;
+        animation-timeline: view();
+        animation-range: entry 8% cover 60%;
+      }
+      .timeline-item .timeline__marker {
+        animation: dot-on var(--dur-long) var(--ease-in-out) both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 40%;
+      }
+    }
+  }
+  html.js-anim .timeline-item.is-visible .timeline__marker {
+    border-color: rgb(var(--accent));
+    background-color: rgb(var(--accent));
+  }
+
+  /* —— Marca-texto que se preenche ao rolar (fallback: sempre preenchida) — */
+  .mark-fill {
+    background-image: linear-gradient(rgb(var(--highlight)), rgb(var(--highlight)));
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0.05em 0.1em;
+    margin: -0.05em -0.1em;
+    border-radius: 2px;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .mark-fill {
+        background-size: 0% 100%;
+        animation: mark-fill var(--dur-long) var(--ease-in-out) both;
+        animation-timeline: view();
+        animation-range: entry 12% cover 48%;
+      }
+    }
+  }
+
+  /* —— Números que contam — */
+  .count-value {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* —— Botão voltar ao topo — */
+  .back-to-top {
+    opacity: 0;
+    transform: translateY(var(--move-md));
+    pointer-events: none;
+    transition:
+      opacity var(--dur-med) var(--ease-out),
+      transform var(--dur-med) var(--ease-emphasis);
+  }
+  .back-to-top.is-shown {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /* —— Barra de progresso de leitura (CSS scroll-driven; escalaX) — */
+  .reading-progress {
+    transform-origin: left;
+    transform: scaleX(0);
+    background-color: rgb(var(--highlight));
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reading-progress {
+        animation: reading-progress linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+  .scroll-story-section {
+    @apply relative scroll-mt-24;
+  }
+  .scroll-story-section::before {
+    content: '';
+    @apply absolute -left-4 top-0 hidden h-full w-px bg-highlight/70 lg:block;
+  }
+  .scroll-story-section.is-active::before {
+    background-color: rgb(var(--accent));
+  }
+
+  /* —— Palavra fantasma do contato (contorno fino, atrás do conteúdo) — */
+  .contact-ghost {
+    @apply font-display font-bold leading-none tracking-tight text-transparent;
+    font-size: clamp(7rem, 17vw, 19rem);
+    -webkit-text-stroke: 1px rgb(var(--border) / 0.9);
+  }
+
+  /* —— Trilho vertical do scrollytelling (stepper preso à tela) —— */
+  .story-rail {
+    @apply relative flex flex-col items-center gap-7;
+  }
+  .story-rail::before {
+    content: '';
+    @apply absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-line dark:bg-line/70;
+  }
+  .story-rail__dot {
+    @apply relative z-[1] block h-3 w-3 cursor-pointer p-0;
+    transform: rotate(45deg);
+    border: 2px solid rgb(var(--border-strong));
+    background-color: rgb(var(--bg));
+    transition:
+      background-color var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-emphasis);
+  }
+  .story-rail__dot.is-past {
+    border-color: rgb(var(--accent));
+    background-color: rgb(var(--accent));
+  }
+  .story-rail__dot.is-current {
+    border-color: rgb(var(--accent));
+    background-color: rgb(var(--highlight));
+    transform: rotate(45deg) scale(1.45);
+  }
+
+  /* —— Parallax fino preso à rolagem dos capítulos —— */
+  .story-parallax {
+    will-change: transform;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .story-parallax {
+        animation: story-para var(--dur-long) var(--ease-in-out) both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 45%;
+      }
+    }
+  }
+  /* —— Revelação na rolagem: visível por padrão (SSR, sem JS, reduced-motion) — */
+  .reveal {
+    --reveal-dir: var(--move-lg);
+    --reveal-delay: 0ms;
+    opacity: 1;
+    transform: none;
+  }
+  .reveal--up { --reveal-dir: var(--move-lg); }
+  .reveal--down { --reveal-dir: calc(-1 * var(--move-lg)); }
+  .reveal--left { --reveal-dir: calc(-1 * var(--move-lg)); }
+  .reveal--right { --reveal-dir: var(--move-lg); }
+  .reveal--no-move { --reveal-dir: 0px; }
+}
+
+/* Fallback com IntersectionObserver (html.js-anim): esconde antes de revelar */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-anim:not(.sd) .reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(var(--reveal-dir));
+  }
+  html.js-anim:not(.sd) .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-med) var(--ease-out) var(--reveal-delay),
+      transform var(--dur-med) var(--ease-emphasis) var(--reveal-delay);
+  }
+}
+
+/* CSS scroll-driven: revelação declarativa, sem JS */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in var(--dur-long) var(--ease-emphasis) both;
+      animation-timeline: view();
+      animation-range: entry 2% cover 35%;
+    }
+    .reveal--up { animation-name: reveal-in; }
+    .reveal--left { animation-name: reveal-in-left; }
+    .reveal--right { animation-name: reveal-in-right; }
+    .reveal--no-move { animation-name: reveal-fade; }
+    .reveal:nth-child(2) { animation-range: entry 10% cover 35%; }
+    .reveal:nth-child(3) { animation-range: entry 18% cover 35%; }
+    .reveal:nth-child(4) { animation-range: entry 26% cover 35%; }
+  }
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(var(--reveal-dir)); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-in-left {
+  from { opacity: 0; transform: translateX(var(--reveal-dir)); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-in-right {
+  from { opacity: 0; transform: translateX(var(--reveal-dir)); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    animation: page-enter 280ms var(--ease-out) backwards;
+  }
+
+  .geo-float {
+    animation: geo-float 7s ease-in-out infinite;
+  }
+
+  .geo-drift {
+    animation: geo-drift 9s ease-in-out infinite alternate;
+  }
+
+  .geo-spin {
+    animation: geo-spin 16s linear infinite;
+  }
+
+  .menu-open {
+    animation: menu-in var(--dur-med) var(--ease-emphasis) both;
+  }
+
+  .theme-swap {
+    animation: theme-swap 320ms var(--ease-in-out);
+  }
+
+  .react-count {
+    animation: count-pop var(--dur-base) var(--ease-emphasis);
+  }
+
+  .nav-link-underline {
+    position: relative;
+  }
+  .nav-link-underline::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0 auto 0 0;
+    bottom: 0;
+    height: 2px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform var(--dur-base) var(--ease-emphasis);
+    background: rgb(var(--highlight));
+  }
+  .nav-link-underline:hover::after,
+  .nav-link-underline.router-link-active::after {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(var(--move-sm)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(calc(-1 * var(--move-sm))); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes theme-swap {
+  from { transform: rotate(-45deg) scale(0.6); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@keyframes count-pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+@keyframes geo-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -12px, 0); }
+}
+
+@keyframes geo-drift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  100% { transform: translate3d(-14px, 10px, 0) rotate(8deg); }
+}
+
+@keyframes geo-spin {
+  from { transform: rotate(45deg); }
+  to { transform: rotate(405deg); }
+}
+
+/* Círculo: entra, vira quadrado no centro e cruza o palco */
+@keyframes trio-circle {
+  0%, 100% {
+    transform: translate(calc(-50% + -150px), calc(-50% + -116px)) scale(1) rotate(0deg);
+    border-radius: 50%;
+    background-color: rgb(var(--accent));
+    opacity: 1;
+  }
+  24% {
+    transform: translate(-50%, calc(-50% - 44px)) scale(1.06);
+    border-radius: 50%;
+    background-color: rgb(var(--accent));
+  }
+  38% {
+    transform: translate(-50%, -50%) scale(1.12) rotate(45deg);
+    border-radius: 20%;
+    background-color: rgb(var(--highlight));
+  }
+  50% {
+    transform: translate(calc(-50% + 14px), calc(-50% + 10px)) scale(1);
+    border-radius: 50%;
+    background-color: rgb(var(--accent));
+  }
+  66% {
+    transform: translate(calc(-50% + 150px), calc(-50% + 118px)) scale(1);
+    border-radius: 50%;
+    opacity: 0.94;
+  }
+  84% {
+    transform: translate(calc(-50% + 150px), calc(-50% + 118px)) scale(1);
+  }
+}
+
+/* Quadrado: vira losango e depois círculo no centro, muda de cor */
+@keyframes trio-square {
+  0%, 100% {
+    transform: translate(calc(-50% + 150px), calc(-50% + 118px)) scale(1) rotate(0deg);
+    border-radius: 10px;
+    background-color: rgb(var(--highlight));
+    opacity: 1;
+  }
+  16% {
+    transform: translate(calc(-50% + -14px), calc(-50% + 6px)) scale(1);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
+    border-radius: 9999px;
+    background-color: rgb(var(--accent));
+  }
+  44% {
+    transform: translate(calc(-50% + -150px), calc(-50% + -116px)) scale(0.98);
+    border-radius: 9999px;
+    background-color: rgb(var(--accent));
+  }
+  62% {
+    transform: translate(calc(-50% + -150px), calc(-50% + -116px)) scale(1);
+  }
+  86% {
+    transform: translate(calc(-50% + 150px), calc(-50% + 118px)) scale(1) rotate(0deg);
+    border-radius: 10px;
+    background-color: rgb(var(--highlight));
+  }
+}
+
+/* Triângulo: atravessa o palco, gira 180° e encolhe sobre os outros */
+@keyframes trio-triangle {
+  0%, 100% {
+    transform: translate(calc(-50% + 112px), calc(-50% + -136px)) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  10% {
+    transform: translate(calc(-50% + 150px), calc(-50% + 52px)) scale(0.9);
+  }
+  24% {
+    transform: translate(-50%, -50%) scale(1.5) rotate(180deg);
+  }
+  36% {
+    transform: translate(calc(-50% + 120px), calc(-50% + 118px)) scale(0.95);
+  }
+  58% {
+    transform: translate(calc(-50% + 120px), calc(-50% + 118px)) scale(0.95);
+  }
+  88% {
+    transform: translate(calc(-50% + 112px), calc(-50% + -136px)) scale(1) rotate(0deg);
+  }
+}
+
+/* Transição entre páginas via View Transitions API (quando suportada) */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: page-out 160ms var(--ease-in-out) both;
+  }
+  ::view-transition-new(root) {
+    animation: page-enter 280ms var(--ease-out) both;
+  }
+}
+
+@keyframes page-out {
+  to { opacity: 0; transform: translateY(calc(-1 * var(--move-xs))); }
+}
+
+@keyframes geo-rise {
+  to { transform: translateY(calc(-1 * var(--move-lg))); }
+}
+
+@keyframes timeline-fill {
+  from { transform: scaleY(0.02); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes dot-on {
+  from { border-color: rgb(var(--border-strong)); background-color: rgb(var(--surface)); }
+  to { border-color: rgb(var(--accent)); background-color: rgb(var(--accent)); }
+}
+
+@keyframes mark-fill {
+  from { background-size: 0% 100%; }
+  to { background-size: 100% 100%; }
+}
+
+@keyframes story-para {
+  from { transform: translateY(6px); }
+  to { transform: translateY(-6px); }
+}
+
+@keyframes reading-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes list-fade {
+  from { opacity: 0; transform: translateY(var(--move-sm)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes project-para {
+  from { transform: scale(1.06) translateY(3px); }
+  to { transform: scale(1.06) translateY(-3px); }
+}
+
+@keyframes stage-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(4px); opacity: 1; }
+}
+
+/* —— Hero do blog encolhe ao rolar — */
+.blog-hero {
+  transition: padding-bottom var(--dur-base) var(--ease-out);
+}
+.blog-hero__title {
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+.blog-hero.is-scrolled .blog-hero__title {
+  transform: scale(0.94) translateY(2px);
+  color: rgb(var(--accent));
+}
+
+/* —— Troca de filtro cruza os itens — */
+@media (prefers-reduced-motion: no-preference) {
+  .list-fade-enter-active { transition: opacity 200ms var(--ease-out), transform 240ms var(--ease-emphasis); }
+  .list-fade-leave-active { transition: opacity 120ms var(--ease-in-out); }
+  .list-fade-enter-from { opacity: 0; transform: translateY(var(--move-sm)); }
+  .list-fade-leave-to { opacity: 0; }
+}
+
+/* —— Parallax contido (≤6px) na imagem do projeto — */
+.project-row__img {
+  transform: scale(1.06);
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .project-row__img {
+      animation: project-para var(--dur-long) var(--ease-in-out) both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 55%;
+    }
+  }
+}
+
+/* —— Seta de continuar do case (dica de direção) — */
+@media (prefers-reduced-motion: no-preference) {
+  .stage-hint {
+    animation: stage-hint 1.8s var(--ease-in-out) infinite;
+  }
+}
+
+/* —— Entrada da barra de navegação inferior (SLU) — */
+@media (prefers-reduced-motion: no-preference) {
+  .tabbar-rise {
+    animation: tabbar-rise 300ms var(--ease-emphasis) both;
+  }
+  .tabbar-item-in {
+    animation: tabbar-item-in 360ms var(--ease-emphasis) both;
+    animation-delay: calc(120ms + var(--i, 0) * 55ms);
+  }
+  .menu-drop-enter-active {
+    animation: menu-in var(--dur-med) var(--ease-emphasis) both;
+  }
+  .menu-drop-leave-active {
+    animation: menu-in var(--dur-base) var(--ease-in-out) reverse both;
+  }
+}
+
+@keyframes tabbar-rise {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes tabbar-item-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}

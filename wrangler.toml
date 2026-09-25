@@ -7,11 +7,11 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "portfolio-db"
-database_id = "REPLACE_WITH_DB_ID"
+database_id = "32714eb4-5e83-41a7-af1d-5f2a035d1cbc"
 migrations_dir = "drizzle"
 
 # Índice interno do Nuxt Content
 [[d1_databases]]
 binding = "CONTENT_DB"
 database_name = "portfolio-content"
-database_id = "REPLACE_WITH_CONTENT_DB_ID"
+database_id = "aeb4dbaf-12e5-4698-a2a4-7e5b6b0b9a83"

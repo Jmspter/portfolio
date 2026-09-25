@@ -16,4 +16,4 @@ migrations_dir = "drizzle"
 [[d1_databases]]
 binding = "CONTENT_DB"
 database_name = "portfolio-content"
-database_id = "aeb4dbaf-12e5-4698-a2a4-7e5b6b0b9a83"
+database_id = "aeb4dbaf-12e5-4698-a2a4-7e5b6b0b9a83"e

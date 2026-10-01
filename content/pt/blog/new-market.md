@@ -6,7 +6,7 @@ category: "Mercado e Tecnologia"
 author:
   name: "James"
   avatar: "/about-photo.jpg"
-date: "01 Out 2026"
+date: "30 Set 2026"
 readTime: "12 min read"
 featured: true
 tags:
